@@ -19,7 +19,7 @@ class Insert():
         self.resource = None
 
     # DynamoDBのテーブルにデータを追加する関数
-    def add_item(self, table_name: str, item: dict):
+    def add_item(self, table_name: str, item: dict) -> bool:
         """
         DynamoDBテーブルにデータを追加する関数
 
@@ -30,4 +30,4 @@ class Insert():
         logger.debug({"status": "start", "params": {"table_name": table_name, "item": item}})
         if self.resource is None:
             self.resource = self.connect.get_resource()
-        add_item(self.resource, table_name, item)
+        return add_item(self.resource, table_name, item)

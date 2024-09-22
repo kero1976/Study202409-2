@@ -1,5 +1,5 @@
 """
-AWS Connnector.
+AWS Connect.
 
 create boto3.resource and boto3.client
 """
@@ -12,7 +12,7 @@ logger = getLogger(__name__)
 
 
 class Connect():
-    """AWS Connnector.
+    """AWS Connect.
 
     create boto3.resource and boto3.client
     """
