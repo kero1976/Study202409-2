@@ -4,6 +4,9 @@ v15.4.0
 git config --global user.name "kero"
 git config --global user.email kero1976@outlook.jp
 
+## VSCODEとgithubとの連携方法
+1. 「GitHubに公開」を選択する
+2. ブラウザが立ち上がるのでログインする
 
 ## TIPS
 
