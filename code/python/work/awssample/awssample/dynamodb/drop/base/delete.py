@@ -4,7 +4,7 @@ DynamoDB テーブル削除用ファイル
 from logging import getLogger
 
 from awssample.dynamodb.exception import DynamoDBException
-from botocore.exceptions import ClientError
+from botocore.exceptions import ClientError  # pylint: disable=C0411
 
 # ロガーの作成
 logger = getLogger(__name__)

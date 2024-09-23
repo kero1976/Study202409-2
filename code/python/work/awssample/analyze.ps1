@@ -1,5 +1,9 @@
+# 事前準備として以下のコマンドを実行する
+# Set-ExecutionPolicy Unrestricted
+# Unblock-File -Path "C:\Path\To\Your\Script.ps1"
+
 # 出力先ファイルを指定
-$OUTPUT_FILE = "dest\pylint\pylint_output.txt"
+$OUTPUT_FILE = "dest\pylint_output.txt"
 if (Test-Path $OUTPUT_FILE) {
     Remove-Item $OUTPUT_FILE
 }

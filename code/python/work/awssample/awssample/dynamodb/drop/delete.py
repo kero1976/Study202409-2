@@ -11,6 +11,7 @@ from awssample.dynamodb.exception import DynamoDBException
 logger = getLogger(__name__)
 
 
+# pylint: disable=R0903
 class Delete():
     """DynamoDB テーブル削除用クラス
     """

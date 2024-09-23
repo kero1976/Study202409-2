@@ -17,10 +17,7 @@ class Connect():
     create boto3.resource and boto3.client
     """
 
-    def __init__(self,
-                 service: str,
-                 profile_name: str = None,
-                 region_name: str = None):
+    def __init__(self, service: str, profile_name: str = None, region_name: str = None):
         """コンストラクタ
 
         Args:
@@ -61,15 +58,11 @@ class Connect():
                 "self.region_name": self.region_name
             }
         })
+        session = None
         if self.profile_name and self.region_name:
-            session = boto3.Session(profile_name=self.profile_name,
-                                    region_name=self.region_name)
+            session = boto3.Session(profile_name=self.profile_name, region_name=self.region_name)
         elif self.profile_name and self.region_name is None:
-            logger.warning({
-                "status": "run",
-                "message": "region is None. set ap-northeast-1."
-            })
-            session = boto3.Session(profile_name=self.profile_name,
-                                    region_name="ap-northeast-1")
+            logger.warning({"status": "run", "message": "region is None. set ap-northeast-1."})
+            session = boto3.Session(profile_name=self.profile_name, region_name="ap-northeast-1")
         logger.info({"status": "success", "result": session})
         return session

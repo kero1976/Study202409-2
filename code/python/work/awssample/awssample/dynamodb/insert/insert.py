@@ -10,6 +10,7 @@ from awssample.dynamodb.insert.base.insert import add_item
 logger = getLogger(__name__)
 
 
+# pylint: disable=R0903
 class Insert():
     """DynamoDB テーブル登録用クラス
     """
