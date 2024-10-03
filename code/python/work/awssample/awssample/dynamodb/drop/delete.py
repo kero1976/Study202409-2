@@ -20,11 +20,7 @@ class Delete():
         self.connect = connect
 
     def delete_table(self, table_name: str) -> bool:
-        """テーブル削除
 
-        Args:
-            table_name (str): テーブル名
-        """
         logger.debug({"status": "start", "params": {"table_name": table_name}})
         try:
             delete.delete_table(self.connect.get_client(), table_name)

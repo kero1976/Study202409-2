@@ -22,7 +22,10 @@ class Create():
         """テーブル作成(冪等)
 
         Args:
-            table_name (str): _description_
+            table_name (str): テーブル名
+
+        Returns:
+            bool: true:作成成功(既に存在する)、false:作成失敗(エラー発生)
         """
         logger.debug({"status": "start", "params": {"table_name": table_name}})
         key_schema = [{
@@ -63,6 +66,12 @@ class Create():
 
         Args:
             table_name (str): _description_
+            key_schema (list[dict]): _description_
+            attribute_definitions (list[dict]): _description_
+            provisioned_throughput (dict): _description_
+
+        Returns:
+            bool: _description_
         """
         logger.debug({
             "status": "start",
