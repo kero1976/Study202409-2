@@ -19,6 +19,9 @@ Write-Host "START TIME: $START_TIME_STR"
 # 警告が出たかどうかのフラグ
 $warning_found = $false
 
+# 警告の除外条件
+$disable_rule = ""
+
 # awssampleプロジェクト内の全てのPythonファイルを再帰的に検索してPylintでチェック
 Get-ChildItem -Recurse -Filter *.py -Path "awssample" | ForEach-Object {
     $file = $_.FullName
@@ -26,8 +29,12 @@ Get-ChildItem -Recurse -Filter *.py -Path "awssample" | ForEach-Object {
     Write-Host "Checking $file"
     
     # Pylintコマンドの実行結果を取得
-    $pylint_output = Invoke-Expression "pylint $file"
-    
+    if (-not $disable_rule) {
+         $pylint_output = Invoke-Expression "pylint $file"
+    } else {
+         $pylint_output = Invoke-Expression "pylint --disable=$disable_rule $file"
+    }
+
     # 結果を出力ファイルに追加
     Add-Content $OUTPUT_FILE $pylint_output
     Write-Host $pylint_output
