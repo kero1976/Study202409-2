@@ -1,0 +1,11 @@
+@startuml
+start
+:コンテナイメージ作成;
+:ECRにデプロイ;
+if (デプロイ先) then (lambda)
+  :Labmdaにデプロイ;
+else (ECS)
+  :ECSにデプロイ;
+endif
+end
+@enduml
