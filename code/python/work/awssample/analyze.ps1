@@ -22,9 +22,9 @@ $warning_found = $false
 # 警告の除外条件
 $disable_rule = ""
 
-# awssampleプロジェクト内の全てのPythonファイルを再帰的に検索してPylintでチェック
+# プロジェクト内の全てのPythonファイルを再帰的に検索してPylintでチェック
 Get-ChildItem -Recurse -Filter *.py -Path "awssample" | ForEach-Object {
-    $file = $_.FullName
+    $file = '"' + $_.FullName + '"'
     Add-Content $OUTPUT_FILE "Checking $file"
     Write-Host "Checking $file"
     
