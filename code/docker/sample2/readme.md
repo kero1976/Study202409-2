@@ -27,6 +27,12 @@ docker ps
  docker exec -it <コンテナID> mysql -u root -p
 ```
 
+# 2.設定説明
+
+## 2-1.テーブルの作成
+
+docker-entrypoint-initdb.dフォルダの下にSQL文のファイルを置けば実行される
+
 # volumeの確認
 
 https://qiita.com/akifumii/items/06e79428b09613235aa8
