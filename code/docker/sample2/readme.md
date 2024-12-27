@@ -17,6 +17,12 @@ docker build -t foo:bar .
 docker run --env-file db.env --name bar1 --rm -p 3306:3306 foo:bar
 ```
 
+### 1-2-1.rmオプションについて
+
+--rmを指定して、終了時にコンテナイメージを削除している。
+これが無いと、コンテナを新規に作成した際に、既存のvolumeを使用して、挙動が怪しくなる。
+コンテナ終了時にコンテナイメージとvolumeが削除されるので挙動が怪しくなることが無い。
+
 ## 1-3.起動したコンテナIDの確認
 
 ```
@@ -44,3 +50,11 @@ https://qiita.com/akifumii/items/06e79428b09613235aa8
 成功
 grant all privileges on *.* to 'root'@'%' with grant option;
 flush privileges; 
+
+# 3. Dockerfileについて
+
+## 3-1.MySQLで日本語化できない問題について
+
+mysql8.0で日本語化できない、全角入力しても消える現象が発生した。
+OSが日本語化対応していないのが原因で、apt-getでlocaledefをインストールする必要がある。
+ただ、apt-getｇは入っていないという問題があり、イメージ指定でdebianを選択する必要があった。
