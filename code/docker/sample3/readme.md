@@ -58,3 +58,18 @@ flush privileges;
 mysql8.0で日本語化できない、全角入力しても消える現象が発生した。
 OSが日本語化対応していないのが原因で、apt-getでlocaledefをインストールする必要がある。
 ただ、apt-getｇは入っていないという問題があり、イメージ指定でdebianを選択する必要があった。
+
+## 3-2.Oracle Linux Serverでの日本語確認
+
+microdnf install -y glibc-locale-source
+でうまく日本語入力ができるようになった。
+
+ただ、proxyが必要な環境で、microdnfが動かない現象が発生し、解決方法が不明なまま。
+
+# 4.接続確認
+
+Windows環境でポートが開いているか確認する
+
+```
+netstat -an | findstr 3306
+```
