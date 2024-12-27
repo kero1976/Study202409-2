@@ -6,13 +6,15 @@ VSCODEのコンソールでWSLを選択し、Dockerfileがあるフォルダま�
 以下を実行する。
 
 ```
-docker build .
+docker build -t foo:bar .
 ```
+
+-tオプションでタグを指定。
 
 ## 1-2.作成したイメージの起動
 
 ```
-docker run --env-file db.env　<イメージ>
+docker run --env-file db.env --name bar1 --rm -p 3306:3306 foo:bar
 ```
 
 ## 1-3.起動したコンテナIDの確認
@@ -24,7 +26,7 @@ docker ps
 ## 1-4.起動したコンテナに接続
 
 ```
- docker exec -it <コンテナID> mysql -u root -p
+docker exec -it bar1 mysql -u root -pP@ssw0rd
 ```
 
 # 2.設定説明
