@@ -13,6 +13,8 @@
 * ENTRYPOINT
 * RUN
 * CMD
+* ENV
+* ARG
 
 ## 2-1. FROM
 
@@ -24,5 +26,21 @@ https://hub.docker.com/
 イメージの種類について
 https://qiita.com/tRbiWbc3hnM1Aor/items/ad319d434675236e3fcd
 
-## 2-1-1. Java開発環境
+## 2-2. ENVとARG
 
+ENVはDockerfileに記載することも、コンテナ実行時に指定することも可能。
+
+以下はDockerfile内の抜粋
+
+```Dockerfile
+ENV PORT 80
+EXPOSE $PORT
+```
+
+そのため、ポート番号を変更する際に、イメージの再作成が不要になる。
+Dockerfileに指定した値はデフォルト値のため、実行時に上書き可能なため。
+
+実行時は
+--ENV PORT=8080 または -e PORT=8080
+と指定する。
+--env-fileの指定も可能。
