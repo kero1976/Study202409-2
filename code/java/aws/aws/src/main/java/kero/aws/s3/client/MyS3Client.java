@@ -5,12 +5,13 @@ import java.net.URI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import kero.aws.utils.EnvironmentUtils;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
+import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.S3Configuration;
-import software.amazon.awssdk.regions.Region;
 
 /**
  * S3_ENDPOINTが指定されている場合に、以下の値から
@@ -24,7 +25,7 @@ public class MyS3Client {
 
     public static S3Client getS3Client() {
         logger.debug("START");
-        String endpoint = System.getenv("S3_ENDPOINT");
+        String endpoint = EnvironmentUtils.getEnv("S3_ENDPOINT");
         if (endpoint != null) {
             logger.debug("S3_ENDPOINT: {}", endpoint);
             AwsBasicCredentials credentials = getAwsBasicCredentials();
@@ -62,11 +63,11 @@ public class MyS3Client {
      */
     static AwsBasicCredentials getAwsBasicCredentials() {
         logger.debug("START");
-        String endpoint = System.getenv("S3_ENDPOINT");
+        String endpoint = EnvironmentUtils.getEnv("S3_ENDPOINT");
         if (endpoint != null) {
             logger.debug("S3_ENDPOINT: {}", endpoint);
-            String accessKeyId = System.getenv("S3_AWS_ACCESS_KEY_ID");
-            String secretAccessKey = System.getenv("S3_AWS_SECRET_ACCESS_KEY");
+            String accessKeyId = EnvironmentUtils.getEnv("S3_AWS_ACCESS_KEY_ID");
+            String secretAccessKey = EnvironmentUtils.getEnv("S3_AWS_SECRET_ACCESS_KEY");
             logger.debug("S3_AWS_ACCESS_KEY_ID: {}, S3_AWS_SECRET_ACCESS_KEY: {}", accessKeyId, secretAccessKey);
             try {
                 AwsBasicCredentials credentials = AwsBasicCredentials.create(
