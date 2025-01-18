@@ -15,6 +15,25 @@
     </dependencies>
 ```
 
+# 2.log4j2.xml
+
+## 2-1.標準出力に出力
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1} - %m%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>
+```
 # 9.Q&A
 
 ## 9-1.log4j2.xml を修正してもログが出力されない
