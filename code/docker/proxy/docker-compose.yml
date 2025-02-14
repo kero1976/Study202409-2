@@ -1,0 +1,11 @@
+version: '3'
+services:
+  squid:
+    build: .
+    container_name: squid-proxy
+    restart: unless-stopped
+    ports:
+      - "3128:3128"
+    volumes:
+      - ./squid.conf:/etc/squid/squid.conf
+      - ./logs:/var/log/squid
