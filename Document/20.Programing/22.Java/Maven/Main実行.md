@@ -26,3 +26,18 @@ Java の Main メソッドからプログラムを実行したい場合のやり
 ```
 mvn compile exec:java
 ```
+
+# 2.Maven が使用する Java のバージョンを変更する。
+
+1. プロジェクトの直下に「.vscode/settings.json」ファイルを作成する
+
+2. その中で Maven で使用する JDK を指定する
+
+```
+    "maven.terminal.customEnv": [
+		{
+		  "environmentVariable": "JAVA_HOME",
+		  "value": "C:\\Users\\kero\\AppData\\Roaming\\Code\\User\\globalStorage\\pleiades.java-extension-pack-jdk\\java\\17"
+		}
+	  ],
+```
