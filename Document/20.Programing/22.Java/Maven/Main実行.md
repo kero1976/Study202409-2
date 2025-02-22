@@ -29,6 +29,8 @@ mvn compile exec:java
 
 # 2.Maven が使用する Java のバージョンを変更する。
 
+## 2-1.GUI から
+
 1. プロジェクトの直下に「.vscode/settings.json」ファイルを作成する
 
 2. その中で Maven で使用する JDK を指定する
@@ -41,3 +43,7 @@ mvn compile exec:java
 		}
 	  ],
 ```
+
+## 2-2.CUI から
+
+各 Java のプロファイルのコンソールがあるので、それを選択して、その中で mvn コマンドを実行する
