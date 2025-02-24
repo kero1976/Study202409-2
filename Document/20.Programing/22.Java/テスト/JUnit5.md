@@ -30,3 +30,16 @@ maven-surefire-plugin を使用する。
     </pluginManagement>
   </build>
 ```
+
+### 2-1.テストの実行フォルダを変更
+
+maven-surefire-plugin に以下の設定を追加する。
+
+```
+                    <configuration>
+                        <workingDirectory>${java.io.tmpdir}/hoge</workingDirectory>
+                    </configuration>
+```
+
+上記の例では、実行時フォルダは以下になる。
+C:\Users\kero\AppData\Local\Temp\hoge
