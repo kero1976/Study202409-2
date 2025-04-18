@@ -28,7 +28,7 @@ CSVファイルの列数が5列の場合は、必ず5行のデータとなる。
 import csv
 
 
-def read_csv_file(file_path: str) -> list[dict[str, str]]:
+def read_csv_file(file_path: str) -> list[list[str]]:
     """CSVファイルを読み込む関数
 
     
@@ -36,9 +36,9 @@ def read_csv_file(file_path: str) -> list[dict[str, str]]:
         file_path (str): CSVファイルのパス
 
     Returns:
-        list[dict[str, str]]: CSVファイルの内容を辞書のリストとして返す
+        list[list[str]]: CSVファイルの内容をリストとして返す
     """
     with open(file_path, mode='r', encoding='utf-8') as file:
-        csvreader = csv.reader(file)
-        content = [row for row in csvreader] 
+        csv_reader = csv.reader(file)
+        content = [row for row in csv_reader]
     return content
