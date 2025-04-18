@@ -1,0 +1,19 @@
+[project]
+name = "csv-tool"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "kero",email = "kero1976@outlook.jp"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+]
+
+[tool.poetry]
+packages = [{include = "csv_tool", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
