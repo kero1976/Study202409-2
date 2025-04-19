@@ -10,9 +10,16 @@ import pytest
 #     assert reader.create_date(input_data,
 #                               mapping) == ["1", "山田太郎", "不明", "男", "未設定"]
 
-@pytest.mark.shijo
+
 def test_CsvDataMapper():
     reader = DefaultCsvReader("./tests/data/read_default_csv/data1.txt")
     mapper = CsvDataMapper("1,2,4", reader)
+    result = mapper.create_date(["1", "山田太郎", "男"])
+    assert result == ["1", "山田太郎", "不明", "男", "未設定"]
+
+
+def test_CsvDataMapper2():
+    reader = DefaultCsvReader("./tests/data/read_default_csv/data2.txt")
+    mapper = CsvDataMapper("ID,名前,性別", reader)
     result = mapper.create_date(["1", "山田太郎", "男"])
     assert result == ["1", "山田太郎", "不明", "男", "未設定"]

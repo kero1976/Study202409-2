@@ -51,15 +51,18 @@ class CsvDataMapper:
             })
             return self.mapping
 
-        mapping = self.mapping_info.split(",")
+        mapping_list = self.mapping_info.split(",")
         # 数字以外の文字列はスキップする
-        mapping = [int(map) for map in mapping if map.isdigit()]
+        if mapping_list[0].isdigit():
+            self.mapping = [int(map)-1 for map in mapping_list]
+        else:
+            self.mapping = [self.default_csv.col_no(map) for map in mapping_list]
         logger.debug({
             "status": "success",
             "message": "CsvDataMapper create_mapping success.",
-            "result": mapping
+            "result": self.mapping
         })
-        return mapping
+        return self.mapping
 
     def create_date(self, csv_row: list[str]) -> list[str]:
         """入力CSVデータの1行から、標準CSVデータを使用して出力CSVデータの1行を作成する
@@ -81,8 +84,7 @@ class CsvDataMapper:
         mapping = self.create_mapping()
         # forループでカウントを取得
         for i, map in enumerate(mapping):
-            # マッピング情報が空の場合はスキップ
-            base_csv[map - 1] = csv_row[i]
+            base_csv[map] = csv_row[i]
 
         logger.debug({
             "status": "success",

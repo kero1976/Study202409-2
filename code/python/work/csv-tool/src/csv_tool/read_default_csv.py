@@ -136,3 +136,47 @@ class DefaultCsvReader:
             "result": row
         })
         return row
+
+    def col_no(self, col_name: str) -> int:
+        """カラム名からカラム番号を取得する
+
+        Args:
+            col_name (str): カラム名
+
+        Returns:
+            int: カラム番号
+        """
+        logger.debug({
+            "status": "start  ",
+            "message": "DefaultCsvReader col_no start.",
+            "params": {
+                "col_name": col_name
+            }
+        })
+        if self.raw_datasets is None:
+            logger.debug({
+                "status": "failure",
+                "message": "DefaultCsvReader col_no error.",
+                "result": {
+                    "abspath": os.path.abspath(self.file_path),
+                    "error": "File not found."
+                }
+            })
+            return -1
+        for i, row_data in enumerate(self.raw_datasets):
+            if row_data[0] == col_name:
+                logger.debug({
+                    "status": "success",
+                    "message": "DefaultCsvReader col_no success.",
+                    "result": i
+                })
+                return i
+        logger.debug({
+            "status": "failure",
+            "message": "DefaultCsvReader col_no error.",
+            "result": {
+                "abspath": os.path.abspath(self.file_path),
+                "error": f"Column {col_name} not found."
+            }
+        })
+        return -1
