@@ -79,3 +79,89 @@ def read_csv_file(file_path: str) -> list[list[str]] | None:
             }
         })
         return None
+
+
+class DefaultCsvReader:
+    """標準CSVファイルCSVファイルを読み込むクラス
+    読み込めない場合はNoneを返す。
+    
+    Attributes:
+        file_path (str): CSVファイルのパス
+    """
+
+    def __init__(self, file_path: str) -> None:
+        """コンストラクタ
+        Args:
+            file_path (str): CSVファイルのパス
+        """
+        logger.debug({
+            "status": "init   ",
+            "message": "DefaultCsvReader Create.",
+            "params": {
+                "file_path": file_path
+            }
+        })
+        self.file_path = file_path
+        self.raw_datasets = read_csv_file(file_path)
+        self.csv_cash = None
+
+    def read(self) -> list[str]:
+        """標準CSVデータを読み込んで1行のデータ配列を返す
+        
+        Returns:
+            list[str]: CSVファイルの内容をリストとして返す
+        """
+        logger.debug({
+            "status": "start  ",
+            "message": "DefaultCsvReader read start.",
+        })
+        if self.csv_cash is not None:
+            logger.debug({
+                "status": "success",
+                "message": "DefaultCsvReader read success.",
+                "result": self.csv_cash
+            })
+            return self.csv_cash
+        self.csv_cash = self.read_raw_datasets(self.raw_datasets)
+        logger.debug({
+            "status": "success",
+            "message": "DefaultCsvReader read success.",
+            "result": self.csv_cash
+        })
+        return self.csv_cash
+
+    def read_raw_datasets(self, datasets: list[list[str]] | None) -> list[str] | None:
+        """CSVデータを読み込んで1行のデータ配列を返す
+        
+        Args:
+            datasets (list[list[str]]): CSVファイルの内容をリストとして返す
+
+        Returns:
+            list[str]: CSVファイルの内容をリストとして返す
+        """
+        logger.debug({
+            "status": "start  ",
+            "message": "DefaultCsvReader read_raw_datasets start.",
+            "params": {
+                "datasets": datasets
+            }
+        })
+        if datasets is None:
+            logger.debug({
+                "status": "failure",
+                "message": "DefaultCsvReader read_raw_datasets failure."
+            })
+            return None
+        row = []
+        for row_data in datasets:
+            if len(row_data) == 2:
+                row.append(row_data[1])
+            else:
+                row.append(row_data[0])
+
+        logger.debug({
+            "status": "success",
+            "message": "DefaultCsvReader read_raw_datasets success.",
+            "result": row
+        })
+        return row
