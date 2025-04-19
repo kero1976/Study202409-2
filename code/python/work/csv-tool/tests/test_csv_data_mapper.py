@@ -14,5 +14,5 @@ import pytest
 def test_CsvDataMapper():
     reader = DefaultCsvReader("./tests/data/read_default_csv/data1.txt")
     mapper = CsvDataMapper("1,2,4", reader)
-    result = mapper.create_date(["1", "山田太郎", "男"], ["1", "2", "4"])
+    result = mapper.create_date(["1", "山田太郎", "男"])
     assert result == ["1", "山田太郎", "不明", "男", "未設定"]

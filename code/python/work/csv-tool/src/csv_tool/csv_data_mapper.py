@@ -28,8 +28,40 @@ class CsvDataMapper:
         })
         self.mapping_info = mapping_info
         self.default_csv = default_csv
+        self.mapping = None
 
-    def create_date(self, csv_row: list[str], mapping: list[str]) -> list[str]:
+    def create_mapping(self) -> list[int]:
+        """マッピング情報をリストに変換する
+
+        Returns:
+            list[int]: マッピング情報をリストに変換したもの
+        """
+        logger.debug({
+            "status": "start  ",
+            "message": "CsvDataMapper create_mapping start.",
+            "params": {
+                "mapping_info": self.mapping_info
+            }
+        })
+        if self.mapping is not None:
+            logger.debug({
+                "status": "success",
+                "message": "CsvDataMapper create_mapping cashed.",
+                "result": self.mapping
+            })
+            return self.mapping
+
+        mapping = self.mapping_info.split(",")
+        # 数字以外の文字列はスキップする
+        mapping = [int(map) for map in mapping if map.isdigit()]
+        logger.debug({
+            "status": "success",
+            "message": "CsvDataMapper create_mapping success.",
+            "result": mapping
+        })
+        return mapping
+
+    def create_date(self, csv_row: list[str]) -> list[str]:
         """入力CSVデータの1行から、標準CSVデータを使用して出力CSVデータの1行を作成する
         
         Args:
@@ -42,23 +74,15 @@ class CsvDataMapper:
             "status": "start  ",
             "message": "DefaultCsvReader create_date start.",
             "params": {
-                "csv_row": csv_row,
-                "mapping": mapping
+                "csv_row": csv_row
             }
         })
         base_csv = self.default_csv.read()
+        mapping = self.create_mapping()
         # forループでカウントを取得
         for i, map in enumerate(mapping):
             # マッピング情報が空の場合はスキップ
-            if map == "":
-                continue
-            # マッピング情報が数字の場合は、入力CSVの値を設定する
-            if map.isdigit():
-                base_csv[int(map) - 1] = csv_row[i]
-            # マッピング情報が文字列の場合は、標準CSVの値を設定する
-            else:
-                # base_csv[i] = map
-                pass
+            base_csv[map - 1] = csv_row[i]
 
         logger.debug({
             "status": "success",
