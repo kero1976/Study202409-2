@@ -29,3 +29,8 @@ class TestReadCsvFile:
         assert result[2] == ["住所", "不明"]
         assert result[3] == ["性別", ""]
         assert result[4] == ["オプション情報", "未設定"]
+
+    def test_data_nofile(self):
+        """存在しないCSVファイルの読み込みテスト"""
+        result = read_csv_file("./tests/data/read_default_csv/data_no_file.txt")
+        assert result is None

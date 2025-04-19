@@ -26,11 +26,15 @@ CSVファイルの列数が5列の場合は、必ず5行のデータとなる。
 "オプション情報","未設定"
 """
 import csv
+import os
+from logging import getLogger
+
+logger = getLogger(__name__)
 
 
-def read_csv_file(file_path: str) -> list[list[str]]:
+def read_csv_file(file_path: str) -> list[list[str]] | None:
     """CSVファイルを読み込む関数
-
+    読み込めない場合はNoneを返す。
     
     Args:
         file_path (str): CSVファイルのパス
@@ -38,7 +42,40 @@ def read_csv_file(file_path: str) -> list[list[str]]:
     Returns:
         list[list[str]]: CSVファイルの内容をリストとして返す
     """
-    with open(file_path, mode='r', encoding='utf-8') as file:
-        csv_reader = csv.reader(file)
-        content = [row for row in csv_reader]
-    return content
+    logger.debug({
+        "status": "start  ",
+        "message": "read_csv_file start.",
+        "params": {
+            "file_path": file_path
+        }
+    })
+    try:
+        with open(file_path, mode='r', encoding='utf-8') as file:
+            csv_reader = csv.reader(file)
+            content = [row for row in csv_reader]
+        logger.debug({
+            "status": "success",
+            "message": "read_csv_file success.",
+            "result": content
+        })
+        return content
+    except FileNotFoundError:
+        logger.debug({
+            "status": "failure",
+            "message": "read_csv_file FileNotFoundError.",
+            "result": {
+                "abspath": os.path.abspath(file_path),
+                "error": "File not found."
+            }
+        })
+        return None
+    except Exception as e:
+        logger.debug({
+            "status": "failure",
+            "message": "read_csv_file error.",
+            "result": {
+                "abspath": os.path.abspath(file_path),
+                "error": str(e)
+            }
+        })
+        return None
