@@ -1,5 +1,5 @@
 """read_default_csv.pyファイルのテスト"""
-
+import pytest
 from csv_tool.read_default_csv import read_csv_file
 from csv_tool.read_default_csv import DefaultCsvReader
 
@@ -52,3 +52,11 @@ class TestDefaultCsvReader:
         """
         reader = DefaultCsvReader("./tests/data/read_default_csv/data2.txt")
         assert reader.read() == ["", "", "不明", "", "未設定"]
+
+    def test_data_nofile(self):
+        """存在しないCSVファイルの読み込みテスト"""
+        reader = DefaultCsvReader(
+            "./tests/data/read_default_csv/data_no_file.txt")
+        assert reader.read() is None
+
+
