@@ -25,8 +25,26 @@ def test_bytes_to_int_little_endian_signed():
     result = bytes_to_int(byte_array, byteorder='little', signed=True)
     assert result == -1
 
+
 def test_bytes_to_int_empty_array():
     """空のバイト配列のテスト"""
     byte_array = b''
     result = bytes_to_int(byte_array, byteorder='big', signed=False)
     assert result == 0
+
+
+def test_255_1():
+    """0xFFのテスト1"""
+    result = bytes_to_int(b'\xFF')
+    assert result == 255
+
+
+def test_255_2():
+    """0xFFのテスト2"""
+    result = bytes_to_int(b'\x00\xFF')
+    assert result == 255
+
+def test_255_3():
+    """0xFFのテスト3"""
+    result = bytes_to_int(b'\x00\x00\xFF')
+    assert result == 255
