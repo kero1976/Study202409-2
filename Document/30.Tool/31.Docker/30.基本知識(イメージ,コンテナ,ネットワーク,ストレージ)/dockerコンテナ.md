@@ -11,5 +11,5 @@ docker ps -a
 ## 2-1.使用していないコンテナの一括削除
 
 ```
-docker container prune -a
+docker container prune
 ```
