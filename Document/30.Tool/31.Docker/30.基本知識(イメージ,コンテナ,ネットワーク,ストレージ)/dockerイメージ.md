@@ -3,7 +3,7 @@
 ## 1-1.イメージの一覧確認
 
 ```
-docker image ps
+docker image ls
 ```
 
 # 2.イメージの削除
