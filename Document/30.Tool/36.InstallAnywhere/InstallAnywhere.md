@@ -6,4 +6,6 @@ export LAX_DEBUG=TRUE
 
 # 2.リポジトリの情報
 
-.com.zerog.regidtry.xml
+.com.zerog.registry.xml
+/var/.com.zerog.registry.xml
+$HOME/ZeroGRegistry/
