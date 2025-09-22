@@ -6,3 +6,4 @@ export LAX_DEBUG=TRUE
 
 # 2.リポジトリの情報
 
+.com.zerog.regidtry.xml
