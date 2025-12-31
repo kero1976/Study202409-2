@@ -9,3 +9,7 @@
 タイトル行を選択して、「タイトル行の繰り返し」を選択したらうまく動いた。
 
 https://www.tku.ac.jp/iss/guide/classroom/tipspc/tableheadline.html
+
+# 書式設定
+
+## カーニングしない
