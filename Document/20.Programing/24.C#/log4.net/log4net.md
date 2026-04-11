@@ -92,3 +92,18 @@
         <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.7.2" />
     </startup>
 </configuration>
+
+# 宣言
+
+        private static readonly log4net.ILog _logger =
+
+log4net.LogManager.GetLogger(
+System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+# 使用例
+
+            _logger.Debug("Debug!!");
+            _logger.Info("Info!!");
+            _logger.Warn("Warn!!");
+            _logger.Error("Error!!");
+            _logger.Fatal("Fatal!!");
