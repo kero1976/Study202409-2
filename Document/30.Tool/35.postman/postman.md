@@ -12,3 +12,11 @@ Snippets を使うと便利。
 - {{$guid}} : v4 スタイルの GUID
 - {{$timestamp}}：現在の Unix タイムスタンプ（秒単位
 - {{$randomInt}}：0 から 1000 までのランダムな整数
+
+# 2.Scripts
+
+## 2-1.ログ出力
+
+```
+console.log("テスト);
+```
